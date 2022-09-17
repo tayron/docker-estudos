@@ -1,0 +1,39 @@
+version: '3'
+
+services: 
+
+  laravel: 
+    build:
+      context: .
+      dockerfile: Dockerfile.laravel
+    # Definindo nome da imagem que será criada
+    image: hospedaap/laravel:prod
+
+    # Definindo nome do container
+    container_name: laravel
+
+    # Este container irá fazer parte da rede laranet
+    networks:
+      - laranet
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.laravel
+
+    # Definindo nome da imagem que será criada
+    image: hospedaap/nginx:prod
+
+    # Definindo nome do container
+    container_name: nginx
+
+    # Este container irá fazer parte da rede laranet
+    networks:
+      - laranet
+    ports:
+      - "8080:80"
+
+# Criando rede com nome de laranet cuja o drive será bridge
+networks:
+  laranet:
+    driver: bridge
