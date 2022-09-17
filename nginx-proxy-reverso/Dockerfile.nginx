@@ -1,0 +1,9 @@
+FROM nginx:1.15.0-alpine
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+
+## Criação do arquivo php, para que o nginx valide que o arquivo exista para 
+## sometne depois ele chame o arquivo php do container da aplicação laravel
+## -p é usado para criar diretório caso nao exista
+RUN mkdir /var/www/html -p && touch /var/www/html/index.php
