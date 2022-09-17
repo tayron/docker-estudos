@@ -2,15 +2,15 @@
 
 Existe as seguintes possibilidades de criação de redes internas com containers
 
-*** Bridge** - Network padrão, usada para um container consiga se comunicar facilmente com outro
-*** Host** - Mesma network do docker com a network do host, ou seja, uma porta 80 de um container rodando uma aplicação pode ser acessado através do host, http://localhost
-** **
+**Bridge** - Network padrão, usada para um container consiga se comunicar facilmente com outro
+**Host** - Mesma network do docker com a network do host, ou seja, uma porta 80 de um container rodando uma aplicação pode ser acessado através do host, http://localhost
 
-***overlay** - Varios docker em máquina diferente, rede criada para que os containers docker dessas maquinas destintas consiga se comuninar, cluster.
 
-***maclan** - Pode-ser setar um macaddress em um container docker e ele entra na rede local como se fosse uma maquina real na rede.
+**Overlay** - Varios docker em máquina diferente, rede criada para que os containers docker dessas maquinas destintas consiga se comuninar, cluster.
 
-***nome** - Sem rede
+**Maclan** - Pode-ser setar um macaddress em um container docker e ele entra na rede local como se fosse uma maquina real na rede.
+
+**Nome** - Sem rede, o container não irá ter nenhuma rede
 
 ## Comandos docker para manipular network
 
