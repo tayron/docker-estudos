@@ -89,3 +89,6 @@ docker images | grep laravel
 ```sh 
 docker logs laravel
 ```
+
+## Links úteis
+[stack.desenvolvedor.expert/appendix/docker](https://stack.desenvolvedor.expert/appendix/docker/introducao.html)

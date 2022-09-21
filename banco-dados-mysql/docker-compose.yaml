@@ -1,0 +1,42 @@
+version: '3'
+
+services: 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: app
+    ## Usando dockerize para esperar o container do banco ficar funcionando para depois rodar entrypoint padrão do docker do container
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+    networks:
+      - node-network
+    volumes:
+      - ./node:/usr/src/app
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db  
+
+  db: 
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    # Para permitir acessar o container e digitar as coisas dentro dele
+    tty: true
+    volumes:
+      # Armazena localmente os dados do mysql
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      # usuário default: root
+      - MYSQL_ROOT_PASSWORD=123456
+    networks: 
+      - node-network
+
+
+# Criando rede com nome de laranet cuja o drive será bridge
+networks:
+  node-network:
+    driver: bridge
