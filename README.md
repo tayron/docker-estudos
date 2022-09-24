@@ -75,6 +75,11 @@ deleted: sha256:8ced77757bcb7a2b3c23b20259ed8236cc988f2c862ce5168a69da4bbcbf9176
 Total reclaimed space: 660.2M
 ```
 
+## Executando terminal de um terminal do ubuntu 
+```sh
+docker run -it --name ubuntu --rm ubuntu bash
+```
+
 ## Gerando imagem docker
 ```sh
 docker build -t hospedaapp/laravel:latest . -f Dockerfile.prod
@@ -92,3 +97,7 @@ docker logs laravel
 
 ## Links úteis
 [stack.desenvolvedor.expert/appendix/docker](https://stack.desenvolvedor.expert/appendix/docker/introducao.html)
+
+## Docker hub
+Para executar o login execute o comando: ```docker login```
+Para subir uma imagem para o docker hub: ```docker push nome_usuario/nomecontainer```
