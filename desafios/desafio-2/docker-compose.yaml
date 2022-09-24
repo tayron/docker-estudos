@@ -1,0 +1,52 @@
+version: '3'
+
+services: 
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx
+    networks:
+      - aplicacao-network
+    tty: true
+    ports:
+      - "8080:80"
+    depends_on:
+      - aplicacao
+      
+  aplicacao:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: aplicacao
+    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s docker-entrypoint.sh node index.js
+    networks:
+      - aplicacao-network
+    volumes:
+      - ./aplicacao:/usr/src/app
+    tty: true
+    depends_on:
+      - mysql
+
+  mysql: 
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: mysql
+    restart: always
+    # Para permitir acessar o container e digitar as coisas dentro dele
+    tty: true
+    volumes:
+      # Armazena localmente os dados do mysql
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      # usuário default: root
+      - MYSQL_ROOT_PASSWORD=123456
+    networks: 
+      - aplicacao-network
+
+
+# Criando rede com nome de laranet cuja o drive será bridge
+networks:
+  aplicacao-network:
+    driver: bridge
