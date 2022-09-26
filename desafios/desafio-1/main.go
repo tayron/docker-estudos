@@ -8,7 +8,8 @@ import (
 
 func main() {
 	http.HandleFunc("/", exibirMensagem)
-	log.Println("Servidor executandona porta http://localhost:3000")
+	log.Println("Code.education Rocks!")
+	log.Println("Servidor executando na porta http://localhost:3000 do container")
 	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 

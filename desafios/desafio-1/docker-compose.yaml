@@ -1,11 +1,11 @@
 version: '3'
 
 services: 
-  fullcycle_desafio_1: 
+  codeeducation: 
     build:
       context: .
       dockerfile: Dockerfile  
-    image: hospedaapp/fullcycle_desafio_1
-    container_name: fullcycle_desafio_1
+    image: hospedaapp/codeeducation
+    container_name: codeeducation
     ports:
       - "8080:3000"
