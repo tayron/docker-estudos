@@ -19,11 +19,12 @@ services:
       context: .
       dockerfile: Dockerfile.node
     container_name: aplicacao
-    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s docker-entrypoint.sh node index.js
+    # entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s docker-entrypoint.sh npm install bash -c "node index.js"
+
     networks:
       - aplicacao-network
-    volumes:
-      - ./aplicacao:/usr/src/app
+#    volumes:
+#      - ./aplicacao:/usr/src/app
     tty: true
     depends_on:
       - mysql

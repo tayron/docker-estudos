@@ -4,7 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "bash": "^0.0.1",
+    "cd": "^0.3.3",
     "express": "^4.18.1",
-    "mysql": "^2.18.1"
+    "index.js": "^0.0.3",
+    "ls": "^0.2.1",
+    "mysql": "^2.18.1",
+    "node": "^18.9.1"
   }
 }
