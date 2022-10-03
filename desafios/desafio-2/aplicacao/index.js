@@ -12,6 +12,8 @@ const config = {
 
 app.get('/', (req, res) => {
     try {
+        executeCommand(`CREATE TABLE IF NOT EXISTS people (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(85), PRIMARY KEY(id))`)
+        executeCommand(`INSERT INTO people(name) values ('Tayron')`)        
         getPeopleList(function(peoples) {
             let html = '<h1>Full Cycle</h1>'    
             html += '<table><tr><th>ID</th><th>Nome</th></tr>'
@@ -31,8 +33,6 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, ()=>{    
-    executeCommand(`CREATE TABLE IF NOT EXISTS people (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(85), PRIMARY KEY(id))`)
-    executeCommand(`INSERT INTO people(name) values ('Tayron')`)
     console.info(`Rodando no endereço http://localhost:${port}`)
 })
 
